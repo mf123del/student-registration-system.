@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Student Registration</h2>
+
+        <!-- Input Fields -->
+        <input type="text" id="name" placeholder="Enter Name"><br>
+        <input type="text" id="id" placeholder="Enter ID"><br>
+        <input type="number" id="marks" placeholder="Enter Marks"><br>
+
+        <!-- Buttons -->
+        <button onclick="addStudent()">Add Student</button>
+        <button onclick="clearData()">Clear</button>
+        <button onclick="displayStudents()">Show Again</button>
+
+        <!-- Output -->
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // Store students
+        let students = [];
+
+        function addStudent() {
+            let name = document.getElementById("name").value;
+            let id = document.getElementById("id").value;
+            let marks = document.getElementById("marks").value;
+
+            if (name === "" || id === "" || marks === "") {
+                alert("Please fill all fields!");
+                return;
+            }
+
+            // Save data
+            students.push({ name, id, marks });
+
+            displayStudents();
+
+            // Clear input fields
+            document.getElementById("name").value = "";
+            document.getElementById("id").value = "";
+            document.getElementById("marks").value = "";
+        }
+
+        function displayStudents() {
+            let output = document.getElementById("output");
+            output.innerHTML = "";
+
+            students.forEach(student => {
+                output.innerHTML += 
+                    `<p><b>Name:</b> ${student.name} | <b>ID:</b> ${student.id} | <b>Marks:</b> ${student.marks}</p>`;
+            });
+        }
+
+        function clearData() {
+            // Only hides output (data still saved)
+            document.getElementById("output").innerHTML = "";
+        }
+    </script>
+
+</body>
+</html>
